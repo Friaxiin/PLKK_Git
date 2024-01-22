@@ -33,16 +33,18 @@ namespace PLKK_Git
 
             TasksParam = tasks;
 
-            ToDoList.ItemsSource = TasksParam;
+            //ToDoList.ItemsSource = TasksParam;
         }
         public void AddTask()
         {
             Tasks task = new Tasks();
+            /*
             task.Title = Title.Text;
             task.Description = Title.Text;
             task.Deadline = Date.SelectedDate;
             task.Priority = Priority.Text;
-
+            task.IsCompleted = "NIEUKOŃCZONE";
+            */
             TasksParam.Add(task);
 
             if(File.Exists(path))
@@ -64,7 +66,64 @@ namespace PLKK_Git
         }
         public void DeleteTask()
         {
+            Tasks task = ToDoList.SelectedItem;
+            if (task != null)
+            {
+                string title = task.Title;
+                List<Tasks> tasks = TasksParam;
+                Tasks result = tasks.Find(t => t.Title == title);
+                TasksParam.Remove(task);
 
+                if (File.Exists(path))
+                {
+                    string serializedTasks = JsonConvert.SerializeObject(TasksParam);
+
+                    File.WriteAllText(path, serializedTasks);
+
+                    ReadTasks();
+                }
+                else
+                {
+                    string serializedTasks = JsonConvert.SerializeObject(new List<Tasks>());
+
+                    File.WriteAllText(path, serializedTasks);
+
+                    ReadTasks();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Zaznacz element listy", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+        public void FinishTask()
+        {
+            Tasks task = ToDoList.SelectedItem;
+            if (task != null)
+            {
+                string title = task.Title;
+                List<Tasks> tasks = TasksParam;
+                Tasks result = tasks.Find(t => t.Title == title);
+
+                result.IsCompleted = "UKOŃCZONE";
+
+                if (File.Exists(path))
+                {
+                    string serializedTasks = JsonConvert.SerializeObject(TasksParam);
+
+                    File.WriteAllText(path, serializedTasks);
+
+                    ReadTasks();
+                }
+                else
+                {
+                    string serializedTasks = JsonConvert.SerializeObject(new List<Tasks>());
+
+                    File.WriteAllText(path, serializedTasks);
+
+                    ReadTasks();
+                }
+            }
         }
     }
 }

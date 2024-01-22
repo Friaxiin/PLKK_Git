@@ -12,5 +12,6 @@ namespace PLKK_Git
         public string Description { get; set; }
         public DateTime Deadline { get; set; }
         public string Priority { get; set; }
+        public string IsCompleted { get; set; }
     }
 }
