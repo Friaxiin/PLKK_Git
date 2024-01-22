@@ -34,8 +34,9 @@
                 </ListView.View>
             </ListView> 
         </Border>
-        <Button Content="Usuń" Width="100" Height="20" VerticalAlignment="Top" Margin="0,300,0,0" Background="Black" Foreground="White"/>
-        <Button Content="Edytuj" Width="100" Height="20" VerticalAlignment="Top" Margin="0,330,0,0" Background="Black" Foreground="White"/>
+        <Button Content="Usuń" Width="100" Height="20" VerticalAlignment="Top" Margin="-202,300,0,0" Background="Black" Foreground="White"/>
+        <Button Content="Edytuj" Width="100" Height="20" VerticalAlignment="Top" Margin="0,300,0,0" Background="Black" Foreground="White"/>
+        <Button Content="Ukończ" Width="100" Height="20" VerticalAlignment="Top" Margin="202,300,0,0" Background="Black" Foreground="White"/>
         <!--0:dd.mm.yyyy\-->
     </Grid>
 </Window>
