@@ -6,7 +6,37 @@
         xmlns:local="clr-namespace:PLKK_Git"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <StackPanel>
-        
-    </StackPanel>
+    <Grid>
+        <!--//tytul,opis,data,priorytet-->
+        <TextBlock Text="Tytuł:" HorizontalAlignment="Center"/>
+        <TextBox x:Name="Title" HorizontalAlignment="Center" Height="20" Width="100" VerticalAlignment="Top" Margin="20"/>
+        <TextBlock Text="Opis:" HorizontalAlignment="Center" Margin="50"/>
+        <TextBox x:Name="Description" HorizontalAlignment="Center" Height="20" Width="100" VerticalAlignment="Top" Margin="70"/>
+        <TextBlock Text="Data:" HorizontalAlignment="Center" Margin="90"/>
+        <DatePicker x:Name="Date" HorizontalAlignment="Center" Margin="110" Height="25" VerticalAlignment="Top"/>
+        <TextBlock Text="Priorytet:" HorizontalAlignment="Center" Margin="140"/>
+        <ComboBox x:Name="ComboBox" Height="10" Width="20" VerticalAlignment="Top" Margin="70,145,0,0">
+            <ComboBoxItem Content="Niski"/>
+            <ComboBoxItem Content="Średni"/>
+            <ComboBoxItem Content="Wysoki"/>
+        </ComboBox>
+        <Button Content="Dodaj" Width="100" Height="20" VerticalAlignment="Top" Margin="165" Background="Black" Foreground="White"/>
+        <Border BorderBrush="White" BorderThickness="1" CornerRadius="10"  VerticalAlignment="Center" Margin="0,10,0,0">
+            <ListView x:Name="TaskList" Background="LightGray" Foreground="Black">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Tytuł" Width="158" DisplayMemberBinding="{Binding Title}"/>
+                        <GridViewColumn Header="Opis" Width="158" DisplayMemberBinding="{Binding Description}"/>
+                        <GridViewColumn Header="Data" Width="158" DisplayMemberBinding="{Binding Date}"/>
+                        <GridViewColumn Header="Priorytet" Width="158" DisplayMemberBinding="{Binding Priority}"/>
+                        <GridViewColumn Header="Status" Width="160" DisplayMemberBinding="{Binding IsCompleted}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView> 
+        </Border>
+        <Button Content="Usuń" Width="100" Height="20" VerticalAlignment="Top" Margin="-202,300,0,0" Background="Black" Foreground="White"/>
+        <Button Content="Edytuj" Width="100" Height="20" VerticalAlignment="Top" Margin="0,300,0,0" Background="Black" Foreground="White"/>
+        <Button Content="Ukończ" Width="100" Height="20" VerticalAlignment="Top" Margin="202,300,0,0" Background="Black" Foreground="White"/>
+        <!--0:dd.mm.yyyy\-->
+    </Grid>
 </Window>
