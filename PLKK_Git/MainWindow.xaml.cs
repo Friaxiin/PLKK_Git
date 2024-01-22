@@ -124,6 +124,24 @@ namespace PLKK_Git
                     ReadTasks();
                 }
             }
+            else
+            {
+                MessageBox.Show("Zaznacz element listy", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+        public void EditTask()
+        {
+            Tasks task = ToDOList.SelectedItem;
+            if (task != null)
+            {
+                EditWindow editWindow = new EditWindow(task);
+                editWindow.Show();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Zaznacz element listy", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }
