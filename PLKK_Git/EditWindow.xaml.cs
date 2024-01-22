@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,22 +29,21 @@ namespace PLKK_Git
             InitializeComponent();
             OldTitle = task.Title;
 
-            Title.Text = task.Title;
-            Description.Text = task.Description;
-            Date.SelectedDate = task.Deadline;
-            Priority.Text = task.Priority;
+            title.Text = task.Title;
+            description.Text = task.Description;
+            date.SelectedDate = task.Deadline;
+            comboBox.Text = task.Priority;
         }
-        public void EditTask()
+        private void EditTask(object sender, RoutedEventArgs e)
         {
-
-            string title = task.Title;
+            string newTitle = title.Text;
             List<Tasks> tasks = TasksParam;
-            Tasks result = tasks.Find(t => t.Title == title);
+            Tasks result = tasks.Find(t => t.Title == newTitle);
 
-            result.Title = Title.Text;
-            result.Description = Title.Text;
-            result.Deadline = Title.Text;
-            result.Priority = Title.Text;
+            result.Title = title.Text;
+            result.Description = description.Text;
+            result.Deadline = date.SelectedDate.Value;
+            result.Priority = ((ComboBoxItem)comboBox.SelectedItem).Content.ToString();
 
             if (File.Exists(path))
             {
@@ -51,7 +51,9 @@ namespace PLKK_Git
 
                 File.WriteAllText(path, serializedTasks);
 
-                ReadTasks();
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show();
+                this.Close();
             }
             else
             {
@@ -59,7 +61,9 @@ namespace PLKK_Git
 
                 File.WriteAllText(path, serializedTasks);
 
-                ReadTasks();
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show();
+                this.Close();
             }
         }
     }

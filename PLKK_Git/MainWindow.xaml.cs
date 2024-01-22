@@ -10,6 +10,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
 using Newtonsoft.Json;
+using System.Diagnostics;
 
 namespace PLKK_Git
 {
@@ -33,40 +34,49 @@ namespace PLKK_Git
 
             TasksParam = tasks;
 
-            //ToDoList.ItemsSource = TasksParam;
+            TaskList.ItemsSource = TasksParam;
         }
-        public void AddTask()
+        public void AddTask(object sender, RoutedEventArgs e)
         {
-            Tasks task = new Tasks();
-            /*
-            task.Title = Title.Text;
-            task.Description = Title.Text;
-            task.Deadline = Date.SelectedDate;
-            task.Priority = Priority.Text;
-            task.IsCompleted = "NIEUKOŃCZONE";
-            */
-            TasksParam.Add(task);
-
-            if(File.Exists(path))
+            try
             {
-                string serializedTasks = JsonConvert.SerializeObject(TasksParam);
 
-                File.WriteAllText(path, serializedTasks);
 
-                ReadTasks();
+                Tasks task = new Tasks();
+
+                task.Title = title.Text;
+                task.Description = description.Text;
+                task.Deadline = date.SelectedDate.Value;
+                task.Priority = ((ComboBoxItem)comboBox.SelectedItem).Content.ToString();
+                task.IsCompleted = "NIEUKOŃCZONE";
+
+                TasksParam.Add(task);
+
+                if (File.Exists(path))
+                {
+                    string serializedTasks = JsonConvert.SerializeObject(TasksParam);
+
+                    File.WriteAllText(path, serializedTasks);
+
+                    ReadTasks();
+                }
+                else
+                {
+                    string serializedTasks = JsonConvert.SerializeObject(new List<Tasks>());
+
+                    File.WriteAllText(path, serializedTasks);
+
+                    ReadTasks();
+                }
             }
-            else
+            catch
             {
-                string serializedTasks = JsonConvert.SerializeObject(new List<Tasks>());
-
-                File.WriteAllText(path, serializedTasks);
-
-                ReadTasks();
+                MessageBox.Show("Uzupełnij wszystkie pola", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-        public void DeleteTask()
+        public void DeleteTask(object sender, RoutedEventArgs e)
         {
-            Tasks task = ToDoList.SelectedItem;
+            Tasks task = (Tasks)TaskList.SelectedItem;
             if (task != null)
             {
                 string title = task.Title;
@@ -96,9 +106,9 @@ namespace PLKK_Git
                 MessageBox.Show("Zaznacz element listy", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-        public void FinishTask()
+        public void FinishTask(object sender, RoutedEventArgs e)
         {
-            Tasks task = ToDoList.SelectedItem;
+            Tasks task = (Tasks)TaskList.SelectedItem;
             if (task != null)
             {
                 string title = task.Title;
@@ -129,9 +139,9 @@ namespace PLKK_Git
                 MessageBox.Show("Zaznacz element listy", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-        public void EditTask()
+        public void EditTask(object sender, RoutedEventArgs e)
         {
-            Tasks task = ToDOList.SelectedItem;
+            Tasks task = (Tasks)TaskList.SelectedItem;
             if (task != null)
             {
                 EditWindow editWindow = new EditWindow(task);
