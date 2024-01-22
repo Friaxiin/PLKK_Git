@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PLKK_Git", "PLKK_Git\PLKK_Git.csproj", "{68CF4455-5272-4264-8FE7-DA71039860B0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{68CF4455-5272-4264-8FE7-DA71039860B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68CF4455-5272-4264-8FE7-DA71039860B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68CF4455-5272-4264-8FE7-DA71039860B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68CF4455-5272-4264-8FE7-DA71039860B0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {83DC2E77-CB7F-4D9C-8F79-3CF069DF811E}
+	EndGlobalSection
+EndGlobal
